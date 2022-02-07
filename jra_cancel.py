@@ -162,7 +162,7 @@ def ultimate():
     check_racecourse(year, month, day, weekday, place)
     
     # 該当競馬場に移動
-    yoyaku()
+    yoyaku(price)
 
     # 完了したら音を鳴らす
     winsound.Beep(400,1000)
