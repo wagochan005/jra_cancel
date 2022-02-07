@@ -8,6 +8,9 @@ from selenium.common.exceptions import NoSuchElementException
 from selenium.webdriver.support.ui import Select
 import winsound
 from selenium import webdriver
+import warnings
+
+warnings.simplefilter('ignore')
 
 # ログインする
 def login(userid, password):
@@ -82,7 +85,7 @@ def choice(price):
         time.sleep(1)
         driver.refresh()
         check_notion()
-        return choice()
+        return choice(price)
     
     else:
         return True
@@ -98,9 +101,7 @@ def book():
     # 仮予約ボタン押す
     book = driver.find_element_by_id("submitAButton")
     book.click()
-    # OKボタンオ押す
-    ok2 = driver.find_element_by_class_name("ajs-button")
-    ok2.click()
+
 
 def go_next():
     try:
@@ -111,7 +112,7 @@ def go_next():
     except NoSuchElementException: # 取れなかったらやり直す
         time.sleep(2)
         driver.refresh()
-        return yoyaku()
+        return yoyaku(price)
     
     else:
         return True
@@ -183,9 +184,12 @@ weekday = input("土日どっち(1文字)")
 place = input("場所(2文字)")
 price = input("席の値段")
 
-print("=======================================")
+if len(price) > 3:
+    price = price[0] + "," + price[1:]
+
+print("==============================================================================")
 print("{}年{}月{}日({}) {}競馬場の{}円のキャンセル席を探します".format(year, month, day, weekday, place, price))
-print("=======================================")
+print("==============================================================================")
 
 # chomedriver
 driver = webdriver.Chrome()
@@ -196,7 +200,7 @@ ultimate()
 # 完了したら音を鳴らす
 winsound.Beep(400,1000)
 
-print("=======================================")
+print("==============================================================================")
 print("{}年{}月{}日({}) {}競馬場の{}円のキャンセル席の仮押さえに成功しました".format(year, month, day, weekday, place, price))
 print("このあとは、手動で購入を行ってください")
-print("=======================================")
+print("==============================================================================")
