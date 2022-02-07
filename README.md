@@ -12,7 +12,8 @@
 1. jra_cancel.exe, chromedriver.exeをダウンロードする<br>
 2. jra_cancel.exeをダブルクリックする
 3. 下図のように、必要な情報を入力する<br>
-![image](https://user-images.githubusercontent.com/87257802/152735691-f4ec1692-6e7f-4f52-82d8-5007773e3e3b.png)
+![image](https://user-images.githubusercontent.com/87257802/152737822-ccd97766-e502-4082-9fba-db9d622ccaad.png)
+
    ※途中で入力を間違えた場合は、一度「✕」ボタンで閉じたあと、再度実行してください。<br>
 
 4. 必要事項を入力したらEnter。自動でログインから予約画面に行く。<br>
