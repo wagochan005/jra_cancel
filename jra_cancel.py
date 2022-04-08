@@ -35,7 +35,7 @@ def return_login():
 # お知らせを確認する
 def notion():
     # 確認したチェックボックスを入れる
-    lbl = driver.find_element_by_tag_name("label")
+    lbl = driver.find_element_by_xpath("/html/body/div[5]/div[3]/label/input")
     lbl.click()
     # 次へ進むボタンを押す
     nxt = driver.find_element_by_id("attention_button_0")
@@ -43,11 +43,26 @@ def notion():
 
 # 競馬場リンクがあるか(満席ではないか)調べる
 def check_racecourse(year, month, day, weekday, place):
-    course_text = "{}年{}月{}日({}) {}競馬場".format(year, month, day, weekday, place) # 場所,時間変えたかったらここ編集する    
+    perform_date = "{}-{}-{}".format(year, month, day) # 場所,時間変えたかったらここ編集する
     try:
-        tokyo = driver.find_element_by_link_text(course_text)    
-        tokyo.click()
-    
+        # 競馬場の選択
+        kb = driver.find_element_by_name("vnts00102[venue_cd]")
+        select = Select(kb)
+        select.select_by_value(place)
+
+        # 開催日の選択
+        nt = driver.find_element_by_name("vnts00102[perform_date]")
+        select = Select(nt)
+        select.select_by_value(perform_date)
+
+        # 検索ボタンを押す
+        button = driver.find_element_by_id("search")
+        button.click()
+
+        # 受付中ボタンを押す
+        enter = driver.find_element_by_xpath("/html/body/div[1]/div[2]/div[2]/div/div[2]/div")
+        enter.click()
+
     except NoSuchElementException: # 満席だったら自動更新して空席になるまで待つ
         time.sleep(2)
         driver.refresh()
@@ -101,7 +116,6 @@ def book():
     # 仮予約ボタン押す
     book = driver.find_element_by_id("submitAButton")
     book.click()
-
 
 def go_next():
     try:
@@ -159,6 +173,7 @@ def ultimate():
     # ログインできたら、お知らせ画面でチェック。次へ進む
     notion()
 
+
     # 該当競馬場のリンクが有効かどうか調べる。有効でなければループ。
     check_racecourse(year, month, day, weekday, place)
     
@@ -191,8 +206,21 @@ print("=========================================================================
 print("{}年{}月{}日({}) {}競馬場の{}円のキャンセル席を探します".format(year, month, day, weekday, place, price))
 print("==============================================================================")
 
+# 競馬場IDを確定させる
+if place == "中山":
+    place = "NYKB"
+elif plase == "阪神":
+    place = "HSKB"
+elif place == "東京":
+    place = "TKKB"
+else:
+    print("エラー")
+
 # chomedriver
 driver = webdriver.Chrome()
+
+# 読み込み待機
+driver.implicitly_wait(10)
 
 # 実際の運用
 ultimate()
