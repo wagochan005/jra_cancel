@@ -92,12 +92,12 @@ def choice(price):
 #         seat = driver.find_element_by_class_name("ticket_auto_link")
         seat = driver.find_element_by_tag_name("[ticketprice = '{}']".format(price))
         seat.click()
-        time.sleep(1)
+        # time.sleep(1)
         ok = driver.find_element_by_class_name("ajs-button")
         ok.click()
     
     except NoSuchElementException: # 満席だったら自動更新して空席になるまで待つ
-        time.sleep(1)
+        # time.sleep(1)
         driver.refresh()
         check_notion()
         return choice(price)
@@ -124,7 +124,7 @@ def go_next():
         next_step.click()
     
     except NoSuchElementException: # 取れなかったらやり直す
-        time.sleep(2)
+        # time.sleep(2)
         driver.refresh()
         return yoyaku(price)
     
