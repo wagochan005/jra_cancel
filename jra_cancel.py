@@ -212,7 +212,17 @@ if place == "中山":
 elif plase == "阪神":
     place = "HSKB"
 elif place == "東京":
-    place = "TKKB"
+    place = "TKIJ"
+elif place == "福島":
+    place = "FKKB"
+elif place == "中京":
+    place = "CKKB"
+elif place == "新潟":
+    place = "NKIB"
+elif place == "京都":
+    place = "KYKJ"
+elif place == "小倉":
+    place = "KKKB"
 else:
     print("エラー")
 
