@@ -209,7 +209,7 @@ print("=========================================================================
 # 競馬場IDを確定させる
 if place == "中山":
     place = "NYKB"
-elif plase == "阪神":
+elif place == "阪神":
     place = "HSKB"
 elif place == "東京":
     place = "TKIJ"
