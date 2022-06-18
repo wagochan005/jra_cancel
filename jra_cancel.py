@@ -109,7 +109,7 @@ def choice(price):
 def zaseki():
     zaseki = driver.find_element_by_class_name("select_checked_auto_aasign")    
     zaseki_element = Select(zaseki)
-#     zaseki_element.select_by_value("1")
+    # zaseki_element.select_by_value("1")
 
 # 仮予約を押す
 def book():
@@ -223,6 +223,8 @@ elif place == "京都":
     place = "KYKJ"
 elif place == "小倉":
     place = "KKKB"
+elif place == "函館":
+    place = "HDKJ"
 else:
     print("エラー")
 
