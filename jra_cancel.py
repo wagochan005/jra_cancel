@@ -207,24 +207,26 @@ print("{}年{}月{}日({}) {}競馬場の{}円のキャンセル席を探しま�
 print("==============================================================================")
 
 # 競馬場IDを確定させる
-if place == "中山":
-    place = "NYKB"
-elif place == "阪神":
-    place = "HSKB"
-elif place == "東京":
-    place = "TKIJ"
+if place == "札幌":
+    place = "SPKB"
+elif place == "函館":
+    place = "HDKJ"
 elif place == "福島":
     place = "FKKB"
-elif place == "中京":
-    place = "CKKB"
+elif place == "中山":
+    place = "NYKB"
+elif place == "東京":
+    place = "TKIJ"
 elif place == "新潟":
     place = "NKIB"
+elif place == "中京":
+    place = "CKKB"
+elif place == "阪神":
+    place = "HSKB"
 elif place == "京都":
     place = "KYKJ"
 elif place == "小倉":
-    place = "KKKB"
-elif place == "函館":
-    place = "HDKJ"
+    place = "KKKB" 
 else:
     print("エラー")
 
