@@ -7,10 +7,11 @@ from selenium.webdriver.chrome.options import Options
 from selenium.common.exceptions import NoSuchElementException
 from selenium.webdriver.support.ui import Select
 import winsound
+from webdriver_manager.chrome import ChromeDriverManager
 from selenium import webdriver
 import warnings
 import PySimpleGUI as sg
-
+import webbrowser
 warnings.simplefilter('ignore')
 
 # ログインする
@@ -273,9 +274,6 @@ while True:
         message = f"{date[:4]}年{date[5:7]}月{date[8:10]}日({weekday}) {place}競馬場の{price}円のキャンセル席を探します"
         sg.popup(message)
 
-# window.close()
-
-
 
     if len(price) > 3:
         price = price[0] + "," + price[1:]
@@ -305,8 +303,11 @@ while True:
     else:
         print("エラー")
 
+    # 必要なブラウザに対応したパージョンのdriverを取得する
+    driver = webdriver.Chrome(ChromeDriverManager().install())
+
     # chomedriver
-    driver = webdriver.Chrome()
+    # driver = webdriver.Chrome()
 
     # 読み込み待機
     driver.implicitly_wait(10)
