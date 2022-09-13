@@ -218,7 +218,8 @@ frame = sg.Frame("",
                      [
                          sg.Text("曜日(土・日)"),
                          sg.Radio("土", group_id="weekday", key="weekday_6"),
-                         sg.Radio("日", group_id="weekday", key="weekday_7")
+                         sg.Radio("日", group_id="weekday", key="weekday_7"),
+                         sg.Radio("月", group_id="weekday", key="weekday_1")
                      ],
                      [
                          sg.Text("開催競馬場"),
@@ -270,6 +271,8 @@ while True:
             weekday = "土"
         elif value["weekday_7"] == True:
             weekday = "日"
+        elif value["weekday_1"] == True:
+            weekday = "月"
 
         message = f"{date[:4]}年{date[5:7]}月{date[8:10]}日({weekday}) {place}競馬場の{price}円のキャンセル席を探します"
         sg.popup(message)
